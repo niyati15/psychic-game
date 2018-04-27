@@ -1,6 +1,6 @@
 
 var guesses = [];
-var counter = 1;
+var counter = 10;
 var wins = 0;
 var losses = 0;
 
@@ -20,7 +20,8 @@ document.onkeyup = function (event) {
 
 
 function checkGuess(userGuess) {
-    if (counter < 10) {
+    if (counter > 0) {
+        // var antiCounter = 
         document.getElementById("guesses-left").innerHTML = counter;
         if (userGuess === res) {
             wins++;
@@ -31,8 +32,8 @@ function checkGuess(userGuess) {
         else {
             console.log("try again!");
         }
-        counter++;
-    } else if (counter === 10) {
+        counter--;
+    } else if (counter === 0) {
         console.log("out of luck!!");
         losses++;
         document.getElementById("losses").innerHTML = losses;
@@ -41,7 +42,7 @@ function checkGuess(userGuess) {
     return false;
 }
 function clearFields() {
-    counter = 1;
+    counter = 10;
     guesses = [];
     randomNumber = Math.floor(Math.random() * 26) + 65;
     res = String.fromCharCode(randomNumber);
